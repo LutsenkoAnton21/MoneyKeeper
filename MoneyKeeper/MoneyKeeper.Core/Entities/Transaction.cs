@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoneyKeeper.Core.Entities
 {
-    public class Transiction
+    public class Transaction
     {
         public int TransactionId { get; set; }
         public int UserId { get; set; }

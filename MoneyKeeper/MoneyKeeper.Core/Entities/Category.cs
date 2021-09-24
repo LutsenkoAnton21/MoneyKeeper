@@ -8,9 +8,9 @@ namespace MoneyKeeper.Core.Entities
 {
     public class Category
     {
-        public int CatedoryId { get; set; }
+        public int CategoryId { get; set; }
         public string Name { get; set; }
         public int UserId { get; set; }
-        public string CategoryTipe { get; set; }
+        public string CategoryType { get; set; }
     }
 }
