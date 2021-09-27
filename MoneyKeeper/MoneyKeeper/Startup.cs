@@ -13,7 +13,9 @@ using MoneyKeeper.Core.Repositories;
 using MoneyKeeper.Core.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace MoneyKeeper
@@ -35,6 +37,12 @@ namespace MoneyKeeper
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MoneyKeeper", Version = "v1" });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+                // SwaggerTag is used instead of xml comment for controller
+                c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
+                c.EnableAnnotations();
             });
 
             services.Configure<DatabaseOptions>(Configuration.GetSection("ConnectionStrings"));
@@ -42,10 +50,14 @@ namespace MoneyKeeper
             services.AddTransient<TransactionService>();
             services.AddTransient<CategoryService>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ITransactionRepository, TransactionRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
             //services.AddTransient<UserRepository>();
-            services.AddTransient<TransactionRepository>();
-            services.AddTransient<CategoryService>();
+            //services.AddTransient<TransactionRepository>();
+            //services.AddTransient<CategoryService>();
             services.AddConnections();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
