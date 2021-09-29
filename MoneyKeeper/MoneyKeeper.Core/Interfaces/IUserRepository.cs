@@ -10,6 +10,6 @@ namespace MoneyKeeper.Core.Interfaces
     public interface IUserRepository
     {
         void CreateUser(User user);
-        User GetUserById(int userId);
+        User GetUserById(string userId);
     }
 }

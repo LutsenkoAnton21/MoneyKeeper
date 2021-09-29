@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MoneyKeeper.Core.Entities;
@@ -13,6 +14,7 @@ namespace MoneyKeeper.Controllers
     /// <summary>
     /// lol kek controller for User Manager
     /// </summary>
+    [Authorize]
     [ApiController]
     [Route("[controller]")]  
     public class UsersController : ControllerBase
@@ -29,7 +31,8 @@ namespace MoneyKeeper.Controllers
         /// </param>
         /// <returns></returns>             
         [HttpGet]
-        public IActionResult User(int userId)
+        [AllowAnonymous]
+        public IActionResult User(string userId)
         {
             var result = _usersService.GetUserById(userId);
             return Ok(result);

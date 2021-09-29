@@ -21,7 +21,7 @@ namespace MoneyKeeper.Core.Services
             _usersRepository.CreateUser(user);
         }
 
-        public User GetUserById(int userId)
+        public User GetUserById(string userId)
         {
             return _usersRepository.GetUserById(userId);
         }

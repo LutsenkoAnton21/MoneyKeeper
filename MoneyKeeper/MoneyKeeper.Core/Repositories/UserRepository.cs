@@ -21,11 +21,11 @@ namespace MoneyKeeper.Core.Repositories
             //INSERT INTO CLIENT VALUES .....
         }
 
-        public User GetUserById(int userId)
+        public User GetUserById(string userId)
         {
             ///192.13.123.4 connection
             /////SELECT * FROM CLIENT WHERE ClientId = @clientId
-            return dbContext.Users.FirstOrDefault(x => x.UserId == userId);
+            return dbContext.Users.FirstOrDefault(x => x.Id == userId);
         }
     }
 }

@@ -44,14 +44,17 @@ namespace MoneyKeeper
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 
                 // SwaggerTag is used instead of xml comment for controller
-                c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
+                //c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
                 c.EnableAnnotations();
             });
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
-            // добавляем контекст MobileContext в качестве сервиса в приложение
+
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(connection));
+
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationContext>();
 
             services.Configure<DatabaseOptions>(Configuration.GetSection("ConnectionStrings"));
             services.AddTransient<UserService>();
@@ -82,6 +85,7 @@ namespace MoneyKeeper
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
