@@ -11,10 +11,10 @@ namespace MoneyKeeper.Core.Repositories
 {
     public class TransactionRepository : ITransactionRepository
     {
-        private readonly DatabaseOptions _options;
-        public TransactionRepository(IOptions<DatabaseOptions> databaseOptions)
+        private readonly ApplicationContext dbContext;
+        public TransactionRepository(ApplicationContext databaseOptions)
         {
-            _options = databaseOptions.Value;
+            dbContext = databaseOptions;
         }
         public void CreateTransaction(Transaction transaction)
         { 
@@ -23,7 +23,7 @@ namespace MoneyKeeper.Core.Repositories
 
         public Transaction GetTransactionById(int transactionId)
         {
-            return new Transaction { Amount = 12345 };
+            return dbContext.Transactions.FirstOrDefault(x => x.TransactionId == transactionId);
         }
     }
 }

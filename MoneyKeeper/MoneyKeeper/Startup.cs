@@ -1,13 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MoneyKeeper.Core;
+using MoneyKeeper.Core.Entities;
 using MoneyKeeper.Core.Interfaces;
 using MoneyKeeper.Core.Repositories;
 using MoneyKeeper.Core.Services;
@@ -44,6 +47,11 @@ namespace MoneyKeeper
                 c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
                 c.EnableAnnotations();
             });
+
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            // добавляем контекст MobileContext в качестве сервиса в приложение
+            services.AddDbContext<ApplicationContext>(options =>
+                options.UseSqlServer(connection));
 
             services.Configure<DatabaseOptions>(Configuration.GetSection("ConnectionStrings"));
             services.AddTransient<UserService>();

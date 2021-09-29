@@ -15,8 +15,7 @@
             </summary>
             <param name="userId"> Id юзера
             </param>
-            <returns></returns>
-            <response code="201">Create dgbjlgdbbljgbb</response>
+            <returns></returns>             
         </member>
         <member name="M:MoneyKeeper.Controllers.UsersController.User(MoneyKeeper.Core.Entities.User)">
             <summary>
@@ -24,6 +23,7 @@
             </summary>
             <param name="user"></param>
             <returns></returns>
+            <response code="201">Create dgbjlgdbbljgbb</response>
         </member>
     </members>
 </doc>

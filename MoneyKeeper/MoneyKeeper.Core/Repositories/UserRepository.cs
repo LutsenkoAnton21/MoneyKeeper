@@ -11,10 +11,10 @@ namespace MoneyKeeper.Core.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly DatabaseOptions _options;
-        public UserRepository(IOptions<DatabaseOptions> databaseOptions)
+        private readonly ApplicationContext dbContext;
+        public UserRepository(ApplicationContext databaseOptions)
         {
-            _options = databaseOptions.Value;
+            dbContext = databaseOptions;
         }
         public void CreateUser(User user)
         { ///192.13.123.4 connection
@@ -25,7 +25,7 @@ namespace MoneyKeeper.Core.Repositories
         {
             ///192.13.123.4 connection
             /////SELECT * FROM CLIENT WHERE ClientId = @clientId
-            return new User { FirstName = "Test" };
+            return dbContext.Users.FirstOrDefault(x => x.UserId == userId);
         }
     }
 }

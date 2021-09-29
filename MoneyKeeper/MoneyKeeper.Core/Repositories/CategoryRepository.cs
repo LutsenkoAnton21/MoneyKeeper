@@ -11,10 +11,10 @@ namespace MoneyKeeper.Core.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {
-        private readonly DatabaseOptions _options;
-        public CategoryRepository(IOptions<DatabaseOptions> databaseOptions)
+        private readonly ApplicationContext dbContext;
+        public CategoryRepository(ApplicationContext databaseOptions)
         {
-            _options = databaseOptions.Value;
+            dbContext = databaseOptions;
         }
         public void CreateCategory(Category category)
         { ///192.13.123.4 connection
@@ -23,9 +23,7 @@ namespace MoneyKeeper.Core.Repositories
 
         public Category GetCategoryById(int categoryId)
         {
-            ///192.13.123.4 connection
-            /////SELECT * FROM CLIENT WHERE ClientId = @clientId
-            return new Category { Name = "Test" };
+            return  dbContext.Categories.FirstOrDefault(x => x.CategoryId == categoryId);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace MoneyKeeper.Core.Entities
     {
         public int CategoryId { get; set; }
         public string Name { get; set; }
-        public int UserId { get; set; }
-        public string CategoryType { get; set; }
+        public int? UserId { get; set; }
+        public bool CategoryType { get; set; }
     }
 }
