@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace MoneyKeeper.Core.Interfaces
 {
-    public interface IUserRepository
+    public interface ITransactionRepository
     {
-        void CreateUser(User user);
-        User GetUserById(int userId);
+        void CreateTransaction(Transaction transaction);
+        Transaction GetTransactionById(int transactionId);
     }
 }

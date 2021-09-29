@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MoneyKeeper</name>
+    </assembly>
+    <members>
+        <member name="T:MoneyKeeper.Controllers.UsersController">
+            <summary>
+            lol kek controller for User Manager
+            </summary>
+        </member>
+        <member name="M:MoneyKeeper.Controllers.UsersController.User(System.Int32)">
+            <summary>
+            приймає юзера
+            </summary>
+            <param name="userId"> Id юзера
+            </param>
+            <returns></returns>             
+        </member>
+        <member name="M:MoneyKeeper.Controllers.UsersController.User(MoneyKeeper.Core.Entities.User)">
+            <summary>
+            создає юзера
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+            <response code="201">Create dgbjlgdbbljgbb</response>
+        </member>
+    </members>
+</doc>
