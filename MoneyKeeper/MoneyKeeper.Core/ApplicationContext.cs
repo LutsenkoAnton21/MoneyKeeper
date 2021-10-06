@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MoneyKeeper.Core.Entities;
+using MoneyKeeper.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace MoneyKeeper.Core
 {
     public class ApplicationContext : IdentityDbContext<User>
     {
+        public DbSet<RegisterUserModel> Register { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
